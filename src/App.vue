@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { useCart } from '@/composables/useCart';
+import { useUser } from '@/composables/useUsers';
+const { isLogin, user, logout } = useUser()
 const { totalProducts } = useCart()
 </script>
 
@@ -10,11 +12,11 @@ const { totalProducts } = useCart()
 
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/products">Products</RouterLink>
         <RouterLink to="/myCart">My Cart ({{ totalProducts }})</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/login" v-if="!isLogin">Login</RouterLink>
+        <RouterLink to="" v-if="isLogin" @click="logout">Logout({{ user?.username }})</RouterLink>
+        <RouterLink to="/register">Register</RouterLink>
       </nav>
     </div>
   </header>
