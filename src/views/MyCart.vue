@@ -5,7 +5,7 @@
         <ul v-if="!isCartEmty">
             <li v-for="(item, index) in cart.items" :key="item.productId">
                 <div>
-                    <h3>{{ item.name }} ￥ {{ item.price }}</h3>
+                    <h3>{{ item.name }} ￥ {{ item.price }} | 有{{ item.quantity }}个</h3>
                     <el-input-number :modelValue="item.quantity" size="default" @update:modelValue="(quantity: number) => {
                         updateQuantity(item, quantity)
                     }" />

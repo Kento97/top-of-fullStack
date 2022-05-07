@@ -1,4 +1,4 @@
-import { computed, ref } from "vue"
+import { computed, ref, nextTick } from "vue"
 
 const cart = ref({
     items: [] as CartItem[]
@@ -21,8 +21,15 @@ export const useCart = () => {
 
     const updateQuantity = async (item: CartItem, quantity: number) => {
         if (quantity <= 0) {
-            alert('你要删除该商品吗？')
-            removeFromCart(item)
+            let isDelete = confirm('你要删除该商品吗？')
+            if (isDelete) {
+                removeFromCart(item)
+            } else {
+                item.quantity = 2
+                setTimeout(() => {
+                    item.quantity = 1
+                }, 0)
+            }
             return;
         }
         item.quantity = quantity
