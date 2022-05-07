@@ -20,9 +20,12 @@ export const useCart = () => {
     }
 
     const updateQuantity = async (item: CartItem, quantity: number) => {
-        if (quantity > 1) {
-            item.quantity = quantity
+        if (quantity <= 0) {
+            alert('你要删除该商品吗？')
+            removeFromCart(item)
+            return;
         }
+        item.quantity = quantity
     }
 
     const removeFromCart = async (item: CartItem) => {

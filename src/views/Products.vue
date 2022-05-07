@@ -8,7 +8,6 @@
             {{ item.name }} ￥ {{ item.price }}
           </h3>
           <el-button type="primary" size="default" @click="addToCart(item)">Add to Cart</el-button>
-
         </div>
       </li>
     </ul>
